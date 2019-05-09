@@ -1,0 +1,48 @@
+<div class="row">
+ <div class="col s12 m6 push-m3">
+ <div class="card hoverable">
+  <div class="card-content">
+   <p><%= @tweet.text %></p>
+  </div>
+  <div id="Nickname" class="card-content">
+   <span class="name">投稿者：<%= @tweet.user.nickname %></span>
+  </div>
+  <% if user_signed_in? && current_user.id == @tweet.user_id %>
+  <div class="card-action">
+    <%= link_to 'Delete', "/tweets/#{@tweet.id}", method: :delete, class: :btn %>
+    <%= link_to 'Edit', "/tweets/#{@tweet.id}/edit", method: :get, class: :btn %>
+  </div>
+  <%end%>
+ </div>
+ </div>
+</div>
+
+<% if current_user %> <!-- ////ログインしている場合//// -->
+<div class="row">
+ <div class="input-field col s12 m6 push-m3">
+  <%= form_tag("/tweets/#{@tweet.id}/comments", method: :post) do %>
+    <p>コメントする</p>
+      <textarea cols="30" name="text" placeholder="コメントする" rows="2"></textarea>
+      <input class="btn" type="submit" value="SENT">
+  <% end %>
+ </div>
+</div>
+<% end %>
+
+<div class="row ">
+ <div class="col s12 m6 push-m3">
+  <div class="card">
+    <div class="card-content">
+    <% if @comments %>
+    <div>コメント一覧</div>
+      <% @comments.each do |comment| %>
+      <ul>
+      <li><span><%= comment.user.nickname %>さん :</span>
+      <%= comment.text %></li>
+      </ul>
+      <%end%>
+    <%end%>
+   </div>
+  </div>
+ </div>
+</div>

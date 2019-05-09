@@ -1,0 +1,16 @@
+<div class="row">
+<p class="center"><%= @nickname %>さんの投稿一覧</p>
+<% @tweets.each do |tweet| %>
+<!-- <div class="row">
+<div class="col s12 m6 push-m3">
+ <div class="card hoverable">
+  <div class="card-content">
+    <p><%= tweet.text %></p>
+  </div>
+ </div>
+</div>
+</div> -->
+<%= render partial: "tweets/tweet", locals: {tweet: tweet} %>
+<%end%>
+ <div class="center"><%= paginate(@tweets)%></div>
+</div>

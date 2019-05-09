@@ -1,0 +1,9 @@
+<div class="row">
+ <div class="input-field col s12 m6 push-m3">
+  <%= form_tag('/tweets', method: :post) do %>
+    <h4>投稿する</h4>
+    <textarea id="textarea"cols="20" name="text" placeholder="text" rows="30"></textarea>
+    <input class="btn" type="submit" value="SENT">
+  <% end %>
+ </div>
+</div>
